@@ -17,11 +17,27 @@ return [
     'compatibility'    =>    '1.3.*',                                // Compatibility with Batflat version
     'icon'          =>  'download',                                 // Icon from http://fontawesome.io/icons/
 
-    // Registering page for possible use as a homepage
-    'pages'            =>  ['Sample Page' => 'FilesToDownload'],
-
     'install'       =>  function () use ($core) {
+        $core->db()->pdo()->exec("CREATE TABLE IF NOT EXISTS `pdev_ftd` (
+            `id` integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+            `icon` text NOT NULL,
+            `name` text NOT NULL,
+            `slug` text NOT NULL,
+            `size` integer NOT NULL DEFAULT 0,
+            `path` text NOT NULL
+        )");
+        if (!file_exists(url('uploads/pdev_ftd'))) {
+            if(!mkdir(url('uploads/pdev_ftd'), 0777, true)){
+                $core->setNotify('failure',$core->lang['FilesToDownload']['mkdir_fail'].'<br>'.url('uploads/pdev_ftd'));
+            }
+        }
     },
     'uninstall'     =>  function () use ($core) {
+        // If you uncomment line bellow then you lost all data but not files
+        // $core->db()->pdo()->exec("DROP TABLE `pdev_ftd`");
+        // If you uncomment block bellow then you lost all files but not data
+        // if (!deleteDir(url('uploads/pdev_ftd'))) {
+        //         $core->setNotify('failure',$core->lang['FilesToDownload']['rmdir_fail'].'<br>'.url('uploads/pdev_ftd'));
+        // }
     }
 ];
