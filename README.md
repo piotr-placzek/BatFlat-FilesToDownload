@@ -1,4 +1,4 @@
-# FliesToDowndlad module for BatFlat
+# FliesToDownload module for BatFlat
 
 <p style="color:red">The module will be ready in a few days.</p>
 
