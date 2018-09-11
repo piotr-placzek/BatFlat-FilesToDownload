@@ -40,7 +40,23 @@ class Admin extends AdminModule
      */
     public function getIndex()
     {
-        $text = 'Hello World';
-        return $this->draw('index.html', ['text' => $text]);
+        $entry = array(
+            'id' => 0,
+            'icon' => 'default',
+            'name' => 'Test entry',
+            'slug' => 'test_entry',
+            'size' => 10,
+            'path' => 'test_file_entry.temp',
+        );
+
+        $entries = array(
+            $entry,
+            $entry,
+            $entry,
+            $entry,
+            $entry
+        );
+
+        return $this->draw('index.html', ['entries' => $entries]);
     }
 }

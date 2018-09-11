@@ -1,16 +1,47 @@
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="panel panel-default">
-                  <div class="panel-heading">
-                        <h3 class="panel-title">{$text}</h3>
-                  </div>
-                  <div class="panel-body">
-                        <div class="text-center">
-                            <h2>{$lang.sample.example}</h2>
-                        </div>
-                        <a href="{?= url('sample') ?}" class="btn btn-block btn-primary">{$lang.sample.button}</a>
-                  </div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{$lang.FilesToDownload.manage}</h3>
             </div>
-              
+            <div class="panel-body">
+                <div>
+                        <a href="#" class="btn btn-success">{$lang.FilesToDownload.btn_add}</a>
+                </div>
+                <hr>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>{$lang.FilesToDownload.th_name}</th>
+                                <th>{$lang.FilesToDownload.th_slug}</th>
+                                <th>{$lang.FilesToDownload.th_icon}</th>
+                                <th>{$lang.FilesToDownload.th_file}</th>
+                                <th>{$lang.FilesToDownload.th_actions}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {loop: $entries}
+                            {? dump($value) ?}
+                            <tr>
+                                <td>{$value.id}</td>
+                                <td><input type="text" name="file_{$value.id}" id="name" value="{$value.name}"></td>
+                                <td><input type="text" name="file_{$value.id}" id="slug" value="{$value.slug}"></td>
+                                <td><input type="text" name="file_{$value.id}" id="icon" value="{$value.icon}"></td>
+                                <td><input type="text" name="file_{$value.id}" id="file" value="{$value.path}" disabled></td>
+                                <td>
+                                        <a href="#" class="btn btn-warning">{$lang.FilesToDownload.btn_change}</a>
+                                        <a href="#" class="btn btn-danger">{$lang.FilesToDownload.btn_remove}</a>
+                                </td>
+                            </tr>
+                            {/loop}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
         </div>
+
     </div>
+</div>
