@@ -1,15 +1,16 @@
 <?php
 /**
-* This file is part of Batflat ~ the lightweight, fast and easy CMS
+* BatFlat - FilesToDownload Module by pplaczek.
+* Allows you to add to the page or post a list of files ready to be downloaded directly from the server.
 *
-* @author       Paweł Klockiewicz <klockiewicz@sruu.pl>
-* @author       Wojciech Król <krol@sruu.pl>
-* @copyright    2017 Paweł Klockiewicz, Wojciech Król <Sruu.pl>
-* @license      https://batflat.org/license
-* @link         https://batflat.org
+* @author       Piotr Płaczek <piotr@pplaczek.pl>
+* @copyright    2018 Piotr Płaczek <p.dev>
+* @license      MIT https://github.com/piotr-placzek/BatFlat-FilesToDownload/blob/master/LICENSE.md
+* @link         https://github.com/piotr-placzek/BatFlat-FilesToDownload/
 */
 
-namespace Inc\Modules\Sample;
+
+namespace Inc\Modules\FilesToDownload;
 
 use Inc\Core\SiteModule;
 
@@ -44,7 +45,7 @@ class Site extends SiteModule
     public function routes()
     {
         // Simple:
-        $this->route('sample', 'getIndex');
+        $this->route('FilesToDownload', 'getIndex');
         /*
             * Or:
             * $this->route('sample', function() {

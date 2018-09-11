@@ -1,24 +1,24 @@
 <?php
 /**
-* This file is part of Batflat ~ the lightweight, fast and easy CMS
+* BatFlat - FilesToDownload Module by pplaczek.
+* Allows you to add to the page or post a list of files ready to be downloaded directly from the server.
 *
-* @author       Paweł Klockiewicz <klockiewicz@sruu.pl>
-* @author       Wojciech Król <krol@sruu.pl>
-* @copyright    2017 Paweł Klockiewicz, Wojciech Król <Sruu.pl>
-* @license      https://batflat.org/license
-* @link         https://batflat.org
+* @author       Piotr Płaczek <piotr@pplaczek.pl>
+* @copyright    2018 Piotr Płaczek <p.dev>
+* @license      MIT https://github.com/piotr-placzek/BatFlat-FilesToDownload/blob/master/LICENSE.md
+* @link         https://github.com/piotr-placzek/BatFlat-FilesToDownload/
 */
 
 return [
-    'name'          =>  $core->lang['sample']['module_name'],
-    'description'   =>  $core->lang['sample']['module_desc'],
-    'author'        =>  'Sruu.pl',
+    'name'          =>  $core->lang['FilesToDownload']['module_name'],
+    'description'   =>  $core->lang['FilesToDownload']['module_desc'],
+    'author'        =>  'p.dev',
     'version'       =>  '1.0',
     'compatibility'    =>    '1.3.*',                                // Compatibility with Batflat version
-    'icon'          =>  'code',                                 // Icon from http://fontawesome.io/icons/
+    'icon'          =>  'download',                                 // Icon from http://fontawesome.io/icons/
 
     // Registering page for possible use as a homepage
-    'pages'            =>  ['Sample Page' => 'sample'],
+    'pages'            =>  ['Sample Page' => 'FilesToDownload'],
 
     'install'       =>  function () use ($core) {
     },
