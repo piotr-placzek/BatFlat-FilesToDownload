@@ -19,6 +19,9 @@ use Inc\Core\AdminModule;
  */
 class Admin extends AdminModule
 {
+    public function init(){
+        $this->core->addCss('https://use.fontawesome.com/releases/v5.3.1/css/all.css');
+    }
     /**
      * Module navigation
      * Items of the returned array will be displayed in the administration sidebar
@@ -71,6 +74,45 @@ class Admin extends AdminModule
             $this->notify('failure', $this->core->lang['FilesToDownload']['no_files']);
         }
 
+        redirect(url([ADMIN, 'FilesToDownload', 'index']));
+    }
+
+    public function getModify($id){
+        $row = $this->core->db('pdev_ftd')->oneArray($id);
+        return $this->draw('modify.html', ['element' => $row]);
+    }
+
+    public function postModifyFile(){
+        if($this->core->db('pdev_ftd')->where('id', $_POST['id'])->update(
+            [
+                'name' => $_POST['file_name'],
+                'slug' => $_POST['file_slug'],
+                'icon' => $_POST['file_icon'],
+            ]
+        )){
+            $this->notify('success', $this->core->lang['FilesToDownload']['modify_file_success']);
+        }
+        else{
+            $this->notify('failure', $this->core->lang['FilesToDownload']['modify_file_failure']);
+        }
+
+        redirect(url([ADMIN, 'FilesToDownload', 'index']));
+    }
+
+    public function getRemove($id){
+        $row = $this->core->db('pdev_ftd')->oneArray($id);
+        $file = UPLOADS.'/pdev_ftd/'.$row['file'];
+
+        dump($file);
+
+        if (file_exists($file)) {
+            if (!unlink($file)) {
+                $this->notify('failure', $this->core->lang['FilesToDownload']['delete_file_failure']);
+            } else {
+                $this->notify('success', $this->core->lang['FilesToDownload']['delete_file_success']);
+                $this->core->db('pdev_ftd')->delete($id);
+            }
+        }
         redirect(url([ADMIN, 'FilesToDownload', 'index']));
     }
 }

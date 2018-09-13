@@ -19,10 +19,10 @@
                         <form action="{?=url([ADMIN, 'FilesToDownload', 'saveFile'])?}" method="POST"  enctype="multipart/form-data">
                             <tbody>
                                 <tr>
-                                    <td><input type="text" name="file_name" id="name" value=""></td>
-                                    <td><input type="text" name="file_slug" id="slug" value=""></td>
-                                    <td><input type="text" name="file_icon" id="icon" value=""></td>
-                                    <td><input type="file" name="file_path" id="file" value=""></td>
+                                    <td><input type="text" name="file_name" value=""></td>
+                                    <td><input type="text" name="file_slug" value=""></td>
+                                    <td><input type="text" name="file_icon" value=""></td>
+                                    <td><input type="file" name="file_path" value=""></td>
                                     <td>
                                         <input type="submit" value="{$lang.FilesToDownload.btn_add}" class="btn btn-success" />
                                     </td>
@@ -59,16 +59,20 @@
                             {loop: $entries}
                             <tr>
                                 <td>{$value.id}</td>
-                                <td><input type="text" name="file_{$value.id}" id="name" value="{$value.name}"></td>
-                                <td><input type="text" name="file_{$value.id}" id="slug" value="{$value.slug}"></td>
-                                <td><input type="text" name="file_{$value.id}" id="icon" value="{$value.icon}"></td>
+                                <!-- <td><input type="text" name="file_{$value.id}" value="{$value.name}"></td> -->
+                                <!-- <td><input type="text" name="file_{$value.id}" value="{$value.slug}"></td> -->
+                                <!-- <td><input type="text" name="file_{$value.id}" value="{$value.icon}"></td> -->
                                 <!-- <td><input type="text" name="file_{$value.id}" id="file" value="{$value.file}" disabled></td> -->
+                                <td>{$value.name}</td>
+                                <td>{$value.slug}</td>
+                                <td><i class="fas fa-{$value.icon}"></i> ({$value.icon})</td>
                                 <td>{$value.file}</td>
                                 <td>
-                                    <a href="#" class="btn btn-warning">{$lang.FilesToDownload.btn_change}</a>
-                                    <a href="#" class="btn btn-danger">{$lang.FilesToDownload.btn_remove}</a>
+                                    <a href="{?= url('admin/FilesToDownload/modify/{$value.id}') ?}" class="btn btn-warning">{$lang.FilesToDownload.btn_change}</a>
+                                    <a href="{?= url('admin/FilesToDownload/remove/{$value.id}') ?}" class="btn btn-danger">{$lang.FilesToDownload.btn_remove}</a>
                                 </td>
                             </tr>
+                            
                             {/loop}
                         </tbody>
                     </table>

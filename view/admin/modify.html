@@ -1,0 +1,39 @@
+<div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{$lang.FilesToDownload.modify_exist}</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>{$lang.FilesToDownload.th_name}</th>
+                                    <th>{$lang.FilesToDownload.th_slug}</th>
+                                    <th>{$lang.FilesToDownload.th_icon}</th>
+                                    <th>{$lang.FilesToDownload.th_file}</th>
+                                    <th>{$lang.FilesToDownload.th_actions}</th>
+                                </tr>
+                            </thead>
+                            <form action="{?=url([ADMIN, 'FilesToDownload', 'modifyFile'])?}" method="POST"  enctype="multipart/form-data">
+                                <input type="hidden" name="id" value="{$element.id}" />
+                                <tbody>
+                                    <tr>
+                                        <td><input type="text" name="file_name" value="{$element.name}"></td>
+                                        <td><input type="text" name="file_slug" value="{$element.slug}"></td>
+                                        <td><input type="text" name="file_icon" value="{$element.icon}"></td>
+                                        <td>{$element.file}</td>
+                                        <td>
+                                                <a href="{?= url('admin/FilesToDownload/index') ?}"  class="btn btn-info">{$lang.FilesToDownload.btn_cancel}</a>
+                                            <input type="submit" value="{$lang.FilesToDownload.btn_change}" class="btn btn-warning" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </form>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
