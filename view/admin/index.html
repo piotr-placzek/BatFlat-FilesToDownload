@@ -12,6 +12,7 @@
                                 <th>{$lang.FilesToDownload.th_name}</th>
                                 <th>{$lang.FilesToDownload.th_slug}</th>
                                 <th>{$lang.FilesToDownload.th_icon}</th>
+                                <!-- <th><a href="https://fontawesome.com" target="blank">{$lang.FilesToDownload.th_icon} <i>(FA)</i></a></th> -->
                                 <th>{$lang.FilesToDownload.th_file}</th>
                                 <th>{$lang.FilesToDownload.th_actions}</th>
                             </tr>
@@ -21,7 +22,7 @@
                                 <tr>
                                     <td><input type="text" name="file_name" value=""></td>
                                     <td><input type="text" name="file_slug" value=""></td>
-                                    <td><input type="text" name="file_icon" value=""></td>
+                                    <td><input type="text" name="file_icon" value="download" placeholder="download"> <a href="https://fontawesome.com" target="blank"><i>(Go to FontAwesome)</i></a></td>
                                     <td><input type="file" name="file_path" value=""></td>
                                     <td>
                                         <input type="submit" value="{$lang.FilesToDownload.btn_add}" class="btn btn-success" />
@@ -49,7 +50,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>{$lang.FilesToDownload.th_name}</th>
-                                <th>{$lang.FilesToDownload.th_slug}</th>
+                                <th>{$lang.FilesToDownload.th_tag}</th>
                                 <th>{$lang.FilesToDownload.th_icon}</th>
                                 <th>{$lang.FilesToDownload.th_file}</th>
                                 <th>{$lang.FilesToDownload.th_actions}</th>
@@ -59,14 +60,10 @@
                             {loop: $entries}
                             <tr>
                                 <td>{$value.id}</td>
-                                <!-- <td><input type="text" name="file_{$value.id}" value="{$value.name}"></td> -->
-                                <!-- <td><input type="text" name="file_{$value.id}" value="{$value.slug}"></td> -->
-                                <!-- <td><input type="text" name="file_{$value.id}" value="{$value.icon}"></td> -->
-                                <!-- <td><input type="text" name="file_{$value.id}" id="file" value="{$value.file}" disabled></td> -->
                                 <td>{$value.name}</td>
-                                <td>{$value.slug}</td>
+                                <td>{noparse}{$pdev_ftd.{/noparse}{$value.slug}}</td>
                                 <td><i class="fas fa-{$value.icon}"></i> ({$value.icon})</td>
-                                <td>{$value.file}</td>
+                                <td><a href="{$value.path}" target="balnk">{$value.file}</a></td>
                                 <td>
                                     <a href="{?= url('admin/FilesToDownload/modify/{$value.id}') ?}" class="btn btn-warning">{$lang.FilesToDownload.btn_change}</a>
                                     <a href="{?= url('admin/FilesToDownload/remove/{$value.id}') ?}" class="btn btn-danger">{$lang.FilesToDownload.btn_remove}</a>

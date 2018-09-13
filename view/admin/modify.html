@@ -12,6 +12,7 @@
                                     <th>{$lang.FilesToDownload.th_name}</th>
                                     <th>{$lang.FilesToDownload.th_slug}</th>
                                     <th>{$lang.FilesToDownload.th_icon}</th>
+                                    <!-- <th><a href="https://fontawesome.com" target="blank">{$lang.FilesToDownload.th_icon} <i>(FA)</i></a></th> -->
                                     <th>{$lang.FilesToDownload.th_file}</th>
                                     <th>{$lang.FilesToDownload.th_actions}</th>
                                 </tr>
@@ -22,8 +23,8 @@
                                     <tr>
                                         <td><input type="text" name="file_name" value="{$element.name}"></td>
                                         <td><input type="text" name="file_slug" value="{$element.slug}"></td>
-                                        <td><input type="text" name="file_icon" value="{$element.icon}"></td>
-                                        <td>{$element.file}</td>
+                                        <td><input type="text" name="file_icon" value="{$element.icon}"> <a href="https://fontawesome.com" target="blank"><i>(Go to FontAwesome)</i></a></td></td>
+                                        <td><a href="{$element.path}" target="balnk">{$element.file}</a></td>
                                         <td>
                                                 <a href="{?= url('admin/FilesToDownload/index') ?}"  class="btn btn-info">{$lang.FilesToDownload.btn_cancel}</a>
                                             <input type="submit" value="{$lang.FilesToDownload.btn_change}" class="btn btn-warning" />

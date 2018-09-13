@@ -8,8 +8,12 @@
 ## Requirements
 Batflat 1.3.x
 
-<!-- ## Changelog
-![View changelog](./CHANGELOG.md) -->
+## Changelog
+### 1.1.0
+- A link to awesome fonts has been added in the admin panel.
+- A preview link to the file has been added in the administration panel (file column).
+- The administrative panel shows the entire tag for the given file (column slug -> column tag).
+- A default value has been added in the new file icon field: download.
 
 ## How to install
 1. Download this repository
