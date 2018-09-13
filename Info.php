@@ -24,20 +24,18 @@ return [
             `name` text NOT NULL,
             `slug` text NOT NULL,
             `size` integer NOT NULL DEFAULT 0,
+            `file` text NOT NULL,
             `path` text NOT NULL
         )");
-        if (!file_exists(url('uploads/pdev_ftd'))) {
-            if(!mkdir(url('uploads/pdev_ftd'), 0777, true)){
-                $core->setNotify('failure',$core->lang['FilesToDownload']['mkdir_fail'].'<br>'.url('uploads/pdev_ftd'));
-            }
+
+        if (!file_exists(UPLOADS.'/pdev_ftd')) {
+            mkdir(UPLOADS.'/pdev_ftd', 0755, true);
         }
     },
     'uninstall'     =>  function () use ($core) {
         // If you uncomment line bellow then you lost all data but not files
-        // $core->db()->pdo()->exec("DROP TABLE `pdev_ftd`");
+        $core->db()->pdo()->exec("DROP TABLE `pdev_ftd`");
         // If you uncomment block bellow then you lost all files but not data
-        // if (!deleteDir(url('uploads/pdev_ftd'))) {
-        //         $core->setNotify('failure',$core->lang['FilesToDownload']['rmdir_fail'].'<br>'.url('uploads/pdev_ftd'));
-        // }
+        deleteDir(UPLOADS.'/dev_ftd');
     }
 ];

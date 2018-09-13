@@ -40,23 +40,37 @@ class Admin extends AdminModule
      */
     public function getIndex()
     {
-        $entry = array(
-            'id' => 0,
-            'icon' => 'default',
-            'name' => 'Test entry',
-            'slug' => 'test_entry',
-            'size' => 10,
-            'path' => 'test_file_entry.temp',
-        );
-
-        $entries = array(
-            $entry,
-            $entry,
-            $entry,
-            $entry,
-            $entry
-        );
-
+        $entries = $this->core->db('pdev_ftd')->toArray();
         return $this->draw('index.html', ['entries' => $entries]);
+    }
+
+    public function postSaveFile()
+    {
+        dump($_FILES);
+        if(is_uploaded_file($_FILES['file_path']['tmp_name'])) {
+            $dir = UPLOADS.'/pdev_ftd';
+            move_uploaded_file($_FILES['file_path']['tmp_name'], $dir."/".$_FILES['file_path']['name']);
+
+            $row = array(
+                'icon' => $_POST['file_icon'],
+                'name' => $_POST['file_name'],
+                'slug' => $_POST['file_slug'],
+                'size' => $_FILES['file_path']['size'],
+                'file' => $_FILES['file_path']['name'],
+                'path' => UPLOADS.'/pdev_ftd/'.$_FILES['file_path']['name']
+            );
+
+            if($query = $this->core->db('pdev_ftd')->save($row)){
+                $this->notify('success', $this->core->lang['FilesToDownload']['db_save_ok'].' '.$_POST['file_name'].' ('.$_FILES['file_path']['size'].'B)');
+            }
+            else{
+                $this->notify('failure', $this->core->lang['FilesToDownload']['no_files']);
+            }
+        }
+        else{
+            $this->notify('failure', $this->core->lang['FilesToDownload']['no_files']);
+        }
+
+        redirect(url([ADMIN, 'FilesToDownload', 'index']));
     }
 }
