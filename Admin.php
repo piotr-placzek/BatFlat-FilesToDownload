@@ -15,13 +15,17 @@ namespace Inc\Modules\FilesToDownload;
 use Inc\Core\AdminModule;
 
 /**
- * Sample admin class
+ * FilesToDownload admin class
  */
 class Admin extends AdminModule
 {
+    /**
+     * Initialize module. Add fontawesome css.
+     */
     public function init(){
         $this->core->addCss('https://use.fontawesome.com/releases/v5.3.1/css/all.css');
     }
+
     /**
      * Module navigation
      * Items of the returned array will be displayed in the administration sidebar
@@ -36,7 +40,7 @@ class Admin extends AdminModule
     }
 
     /**
-     * GET: /admin/sample/index
+     * GET: /admin/FilesToDownload/index
      * Subpage method of the module
      *
      * @return string
@@ -47,6 +51,9 @@ class Admin extends AdminModule
         return $this->draw('index.html', ['entries' => $entries]);
     }
 
+    /**
+     * Upload file into ~/uploads/pdev_ftd directory and add data into db
+     */
     public function postSaveFile()
     {
         dump($_FILES);
@@ -77,11 +84,20 @@ class Admin extends AdminModule
         redirect(url([ADMIN, 'FilesToDownload', 'index']));
     }
 
+    /**
+     * GET: /admin/FilesToDownload/modify
+     * Subpage method of the module
+     * @param id
+     * @return string
+     */
     public function getModify($id){
         $row = $this->core->db('pdev_ftd')->oneArray($id);
         return $this->draw('modify.html', ['element' => $row]);
     }
 
+    /**
+     * Modify row in db
+     */
     public function postModifyFile(){
         if($this->core->db('pdev_ftd')->where('id', $_POST['id'])->update(
             [
@@ -99,6 +115,10 @@ class Admin extends AdminModule
         redirect(url([ADMIN, 'FilesToDownload', 'index']));
     }
 
+    /**
+     * Remove row from db
+     * @param $id
+     */
     public function getRemove($id){
         $row = $this->core->db('pdev_ftd')->oneArray($id);
         $file = UPLOADS.'/pdev_ftd/'.$row['file'];
