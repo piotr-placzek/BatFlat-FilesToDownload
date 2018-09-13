@@ -16,3 +16,9 @@ Batflat 1.3.x
 2. Unzip the downloaded files
 3. Move catalog with theme to the `/inc/modules` 
 4. Activate form modules admin panel
+
+## Usage
+Use the appropriate tag in the place where you want to place the file for download.
+
+### Example
+`{$pdev_ftd.my_file}` where `my_file` is the slug given to the file in the administration panel.
