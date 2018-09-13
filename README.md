@@ -1,9 +1,8 @@
 # FliesToDownload module for BatFlat
-
-<p style="color:red">The module will be ready in a few days.</p>
+A default value has been added in the new file icon field: download.
 
 ## Version
-1.0.0
+1.1.0
 
 ## Requirements
 Batflat 1.3.x
