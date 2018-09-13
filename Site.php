@@ -15,17 +15,10 @@ namespace Inc\Modules\FilesToDownload;
 use Inc\Core\SiteModule;
 
 /**
- * Sample site class
+ * FilesToDownload site class
  */
 class Site extends SiteModule
 {
-    /**
-     * Example module variable
-     *
-     * @var string
-     */
-    protected $foo;
-
     /**
      * Module initialization
      * Here everything is done while the module starts
@@ -34,49 +27,23 @@ class Site extends SiteModule
      */
     public function init()
     {
-        $this->foo = 'Hello';
-    }
-    /**
-     * Register module routes
-     * Call the appropriate method/function based on URL
-     *
-     * @return void
-     */
-    public function routes()
-    {
-        // Simple:
-        $this->route('FilesToDownload', 'getIndex');
-        /*
-            * Or:
-            * $this->route('sample', function() {
-            *  $this->getIndex();
-            * });
-            *
-            * or:
-            * $this->router->set('sample', $this->getIndex());
-            *
-            * or:
-            * $this->router->set('sample', function() {
-            *  $this->getIndex();
-            * });
-            */
-    }
+        // Add styles
+        $this->core->addCss('https://use.fontawesome.com/releases/v5.3.1/css/all.css');
+        $this->core->addCss(url('inc/modules/FilesToDownload/view/pdev_ftd.css'));
 
-    /**
-     * GET: /sample
-     * Called method by router
-     *
-     * @return string
-     */
-    public function getIndex()
-    {
-        $page = [
-            'title' => $this->lang('title'),
-            'desc' => 'Your page description here',
-            'content' => $this->draw('hello.html')
-        ];
+        // Get db items
+        $files = $this->core->db('pdev_ftd')->toArray();
 
-        $this->setTemplate('index.html');
-        $this->tpl->set('page', $page);
+        // Create assigns array
+        $assign = array();
+        dump($files);
+        foreach ($files as $file) {
+            dump($file);
+            $view = $this->draw('fileToDownload.html', ['ftd' => $file]);
+            $assign[$file['slug']] = $view;
+        }
+
+        // Create user tag
+        $this->tpl->set('pdev_ftd', $assign);
     }
 }

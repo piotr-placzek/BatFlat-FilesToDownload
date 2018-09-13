@@ -67,7 +67,7 @@ class Admin extends AdminModule
                 'slug' => $_POST['file_slug'],
                 'size' => $_FILES['file_path']['size'],
                 'file' => $_FILES['file_path']['name'],
-                'path' => UPLOADS.'/pdev_ftd/'.$_FILES['file_path']['name']
+                'path' => url(UPLOADS.'/pdev_ftd/'.$_FILES['file_path']['name'])
             );
 
             if($query = $this->core->db('pdev_ftd')->save($row)){
