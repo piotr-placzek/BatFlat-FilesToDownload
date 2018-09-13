@@ -1,5 +1,5 @@
 # FliesToDownload module for BatFlat
-A default value has been added in the new file icon field: download.
+Allows you to create a section of files to download on the page or post.
 
 ## Version
 1.1.0
