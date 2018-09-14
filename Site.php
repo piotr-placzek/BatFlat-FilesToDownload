@@ -29,7 +29,7 @@ class Site extends SiteModule
     {
         // Add styles
         $this->core->addCss('https://use.fontawesome.com/releases/v5.3.1/css/all.css');
-        $this->core->addCss(url('inc/modules/FilesToDownload/view/pdev_ftd.css'));
+        $this->core->addCss(url('inc/modules/filestodownload/view/pdev_ftd.css'));
 
         // Get db items
         $files = $this->core->db('pdev_ftd')->toArray();
