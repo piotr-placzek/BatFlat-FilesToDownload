@@ -2,7 +2,7 @@
 A default value has been added in the new file icon field: download.
 
 ## Version
-1.1.0
+1.1.1
 
 ## Requirements
 Batflat 1.3.x
@@ -13,6 +13,10 @@ Batflat 1.3.x
 - A preview link to the file has been added in the administration panel (file column).
 - The administrative panel shows the entire tag for the given file (column slug -> column tag).
 - A default value has been added in the new file icon field: download.
+### 1.1.1
+- Fix uninstall (delete dir).
+- Clear unnecessary fragments of source code.
+- Fix problems with namespace.
 
 ## How to install
 1. Download this repository

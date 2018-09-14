@@ -10,10 +10,10 @@
 */
 
 return [
-    'name'          =>  $core->lang['FilesToDownload']['module_name'],
-    'description'   =>  $core->lang['FilesToDownload']['module_desc'],
+    'name'          =>  $core->lang['filestodownload']['module_name'],
+    'description'   =>  $core->lang['filestodownload']['module_desc'],
     'author'        =>  'p.dev',
-    'version'       =>  '1.0',
+    'version'       =>  '1.1',
     'compatibility'    =>    '1.3.*',                                // Compatibility with Batflat version
     'icon'          =>  'download',                                 // Icon from http://fontawesome.io/icons/
 
@@ -36,6 +36,6 @@ return [
         // If you uncomment line bellow then you lost all data but not files
         $core->db()->pdo()->exec("DROP TABLE `pdev_ftd`");
         // If you uncomment block bellow then you lost all files but not data
-        deleteDir(UPLOADS.'/dev_ftd');
+        deleteDir(UPLOADS.'/pdev_ftd');
     }
 ];

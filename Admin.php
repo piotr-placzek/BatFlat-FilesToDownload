@@ -1,6 +1,6 @@
 <?php
 /**
-* BatFlat - FilesToDownload Module by pplaczek.
+* BatFlat - filestodownload Module by pplaczek.
 * Allows you to add to the page or post a list of files ready to be downloaded directly from the server.
 *
 * @author       Piotr Płaczek <piotr@pplaczek.pl>
@@ -40,7 +40,7 @@ class Admin extends AdminModule
     }
 
     /**
-     * GET: /admin/FilesToDownload/index
+     * GET: /admin/filestodownload/index
      * Subpage method of the module
      *
      * @return string
@@ -71,21 +71,21 @@ class Admin extends AdminModule
             );
 
             if($query = $this->core->db('pdev_ftd')->save($row)){
-                $this->notify('success', $this->core->lang['FilesToDownload']['db_save_ok'].' '.$_POST['file_name'].' ('.$_FILES['file_path']['size'].'B)');
+                $this->notify('success', $this->core->lang['filestodownload']['db_save_ok'].' '.$_POST['file_name'].' ('.$_FILES['file_path']['size'].'B)');
             }
             else{
-                $this->notify('failure', $this->core->lang['FilesToDownload']['no_files']);
+                $this->notify('failure', $this->core->lang['filestodownload']['no_files']);
             }
         }
         else{
-            $this->notify('failure', $this->core->lang['FilesToDownload']['no_files']);
+            $this->notify('failure', $this->core->lang['filestodownload']['no_files']);
         }
 
-        redirect(url([ADMIN, 'FilesToDownload', 'index']));
+        redirect(url([ADMIN, 'filestodownload', 'index']));
     }
 
     /**
-     * GET: /admin/FilesToDownload/modify
+     * GET: /admin/filestodownload/modify
      * Subpage method of the module
      * @param id
      * @return string
@@ -106,13 +106,13 @@ class Admin extends AdminModule
                 'icon' => $_POST['file_icon'],
             ]
         )){
-            $this->notify('success', $this->core->lang['FilesToDownload']['modify_file_success']);
+            $this->notify('success', $this->core->lang['filestodownload']['modify_file_success']);
         }
         else{
-            $this->notify('failure', $this->core->lang['FilesToDownload']['modify_file_failure']);
+            $this->notify('failure', $this->core->lang['filestodownload']['modify_file_failure']);
         }
 
-        redirect(url([ADMIN, 'FilesToDownload', 'index']));
+        redirect(url([ADMIN, 'filestodownload', 'index']));
     }
 
     /**
@@ -127,12 +127,12 @@ class Admin extends AdminModule
 
         if (file_exists($file)) {
             if (!unlink($file)) {
-                $this->notify('failure', $this->core->lang['FilesToDownload']['delete_file_failure']);
+                $this->notify('failure', $this->core->lang['filestodownload']['delete_file_failure']);
             } else {
-                $this->notify('success', $this->core->lang['FilesToDownload']['delete_file_success']);
+                $this->notify('success', $this->core->lang['filestodownload']['delete_file_success']);
                 $this->core->db('pdev_ftd')->delete($id);
             }
         }
-        redirect(url([ADMIN, 'FilesToDownload', 'index']));
+        redirect(url([ADMIN, 'filestodownload', 'index']));
     }
 }
